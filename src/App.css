@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+* {
+  font-family: "Helvetica";
+}
+*:focus {
+  outline: none;
+}
+body {
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+span {
+  text-transform: lowercase;
+}
+#wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: start;
+}
+.current {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 5px;
+  width: 100%;
+}
+.Search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.PInput {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
+}
+.btn {
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  border-left: 2px solid #666666;
+}
+.btn:hover {
+  background-color: #afafaf;
+  cursor: pointer;
+}
+.Pwrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d4d4d4;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 20px;
+}
+.PName {
+  font-size: 40px;
+  margin: 5px;
+}
+.Pimg {
+  height: 70px;
+}
+.Ptemp {
+  font: 600 30px "Roboto";
+  margin: 20px;
+}
+.Pdesc {
+  margin: 5px;
+  text-transform: capitalize;
+}
+.Sub {
+  margin-top: 5px;
+}
+.PSub {
+  text-transform: capitalize;
+  font-size: 14px;
+  margin: 2px;
+}
+.fav {
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.Cwrapper {
+  padding: 10px;
+  background-color: #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.CName {
+  margin: 5px;
+}
+.Ctemp {
+  font: 600 18px "Roboto";
+  margin-bottom: 10px;
+}
+.Cdesc {
+  margin: 5px;
+  text-transform: capitalize;
+  display: none;
+}
+.CSub {
+  text-transform: capitalize;
+  font-size: 14px;
+  margin: 2px;
+  display: none;
+}
+.Cwrapper:hover .CSub,
+.Cwrapper:hover .Cdesc {
+  display: block;
+}
