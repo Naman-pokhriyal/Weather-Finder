@@ -1,38 +1,129 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: "Helvetica";
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*:focus {
+  outline: none;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: #000000;
+  background-image: linear-gradient(315deg, #000000 0%, #414141 74%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+span {
+  text-transform: lowercase;
+}
+#wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: start;
+}
+.current {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 5px;
+  width: 100%;
+}
+.Search {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.PInput {
+  flex: 1;
+  border: none;
+  padding: 5px;
+  border-radius: 5px 0 0 5px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn {
+  padding: 5px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  border-left: 2px solid #666666;
+}
+.btn:hover {
+  background-color: #afafaf;
+  cursor: pointer;
+}
+.Pwrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #d4d4d4;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 20px;
+}
+.PName {
+  font-size: 40px;
+  margin: 5px;
+}
+.Pimg {
+  height: 70px;
+}
+.Ptemp {
+  font: 600 30px "Roboto";
+  margin: 20px;
+}
+.Pdesc {
+  margin: 5px;
+  text-transform: capitalize;
+}
+.Sub {
+  margin-top: 5px;
+}
+.PSub {
+  text-transform: capitalize;
+  font-size: 14px;
+  margin: 2px;
+}
+.fav {
+  cursor: pointer;
+  width: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.Cwrapper {
+  position: relative;
+  padding: 10px;
+  background-color: #d4d4d4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.CName {
+  margin: 5px;
+}
+.Ctemp {
+  font: 600 18px "Roboto";
+  margin-bottom: 10px;
+}
+.Cdesc {
+  margin: 5px;
+  text-transform: capitalize;
+  display: none;
+}
+.CSub {
+  text-transform: capitalize;
+  font-size: 14px;
+  margin: 2px;
+  display: none;
+}
+.Cwrapper:hover .CSub,
+.Cwrapper:hover .Cdesc {
+  display: block;
+}
+.unfav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
