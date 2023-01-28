@@ -11,7 +11,7 @@ export default function App() {
   const [list, setList] = useState([]);
   const [listData, setListData] = useState([]);
 
-  const URL = "http://api.openweathermap.org/data/2.5/weather/";
+  const URL = "https://api.openweathermap.org/data/2.5/weather";
   const APIkey = "47a816dc539cc44aae5d87dd8963478c";
 
   useEffect(() => {
