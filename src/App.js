@@ -10,12 +10,20 @@ export default function App() {
   const [currentData, setCurrentData] = useState("");
   const [list, setList] = useState([]);
   const [listData, setListData] = useState([]);
+  const [Bg, setBg] = useState();
 
   const URL = "https://api.openweathermap.org/data/2.5/weather";
   const APIkey = "47a816dc539cc44aae5d87dd8963478c";
+  const APIKeyUS = "DXikrGTvqrQYU3LlzacBTwXgRODcfeBkGqsm-9UpOjI";
 
-  useEffect(() => {
-    setListData([]);
+  useEffect(()=>{
+    if(Bg == null) return;
+    document.body.style.backgroundImage = `url(${Bg})`;
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat'
+  },[Bg]);
+
+  useEffect(()=>{
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(fetchCurrent, () =>
@@ -23,6 +31,11 @@ export default function App() {
         );
       }
     }
+    getLocation();
+  },[])
+
+  useEffect(() => {
+    setListData([]);
     function fetchFavourite() {
       list.forEach(async (place) => {
         await axios
@@ -41,7 +54,6 @@ export default function App() {
           });
       });
     }
-    getLocation();
     fetchFavourite();
   }, [list]);
 
@@ -64,7 +76,7 @@ export default function App() {
   };
 
   const fetchWeather = async () => {
-    return await axios
+    await axios
       .get(URL, {
         params: {
           q: query,
@@ -75,6 +87,16 @@ export default function App() {
       .then((res) => {
         setData(res);
         setQuery("");
+        axios.get(`https://api.unsplash.com/photos/random/?query=${query}&client_id=${APIKeyUS}`,{
+          params:{
+            orientation: "landscape"
+          }
+        })
+        .then((res)=> {
+          setBg(res.data.urls.full);
+          console.log(Bg);
+        })
+        .catch((e)=> console.log(e));
       })
       .catch((e) => {
         console.log("error: " + e);
@@ -134,8 +156,15 @@ export default function App() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                fetchWeather();
+              }
+            }}
           />
-          <button className="btn" onClick={fetchWeather}>
+          <button className="btn" 
+          onClick={fetchWeather} 
+          >
             Search
           </button>
         </div>
