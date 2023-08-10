@@ -16,15 +16,19 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  transition: ease-in 0.4s;
 }
+
 
 span {
   text-transform: lowercase;
 }
+
 #wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: start;
+  padding: 10px;
 }
 .current {
   display: grid;

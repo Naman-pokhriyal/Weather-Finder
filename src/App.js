@@ -17,7 +17,7 @@ export default function App() {
   const APIKeyUS = "DXikrGTvqrQYU3LlzacBTwXgRODcfeBkGqsm-9UpOjI";
 
   useEffect(()=>{
-    if(Bg == null) return;
+    if(!Bg) return;
     document.body.style.backgroundImage = `url(${Bg})`;
     document.body.style.backgroundSize = 'cover';
     document.body.style.backgroundRepeat = 'no-repeat'
@@ -84,26 +84,41 @@ export default function App() {
           units: "metric",
         },
       })
-      .then((res) => {
+      .then(async (res) => {
+        await getImg(res); // Wait for image to load
         setData(res);
         setQuery("");
-        axios.get(`https://api.unsplash.com/photos/random/?client_id=${APIKeyUS}`,{
-          params:{
-            query: query+" scenery",
-            orientation: "landscape",
-            order_by: 'relevant'
-          }
-        })
-        .then((res)=> {
-          setBg(res.data.urls.full);
-          console.log(res);
-        })
-        .catch((e)=> console.log(e));
       })
       .catch((e) => {
         console.log("error: " + e);
       });
   };
+
+  async function getImg(res) {
+    try {
+      const unsplashResponse = await axios.get(
+        `https://api.unsplash.com/photos/random/?client_id=${APIKeyUS}`,
+        {
+          params: {
+            query: query + "-sceneries",
+            orientation: "landscape",
+            order_by: "relevant",
+          },
+        }
+      );
+
+      const preloadedImage = new Image();
+      preloadedImage.src = unsplashResponse.data.urls.full;
+
+      preloadedImage.onload = () => {
+        setBg(preloadedImage.src);
+      };
+
+      return unsplashResponse;
+    } catch (error) {
+      console.log("Error fetching image:", error);
+    }
+  }
 
   const AddFav = (place) => {
     console.log(place);
