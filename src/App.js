@@ -87,14 +87,16 @@ export default function App() {
       .then((res) => {
         setData(res);
         setQuery("");
-        axios.get(`https://api.unsplash.com/photos/random/?query=${query}&client_id=${APIKeyUS}`,{
+        axios.get(`https://api.unsplash.com/photos/random/?client_id=${APIKeyUS}`,{
           params:{
-            orientation: "landscape"
+            query: query+" scenery",
+            orientation: "landscape",
+            order_by: 'relevant'
           }
         })
         .then((res)=> {
           setBg(res.data.urls.full);
-          console.log(Bg);
+          console.log(res);
         })
         .catch((e)=> console.log(e));
       })
